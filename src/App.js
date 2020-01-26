@@ -31,7 +31,7 @@ class App extends React.Component {
         <Route exact path="/signin">
           <SigninPage /> {/*allUsers={allUsers} handleLogin={this.handleLogin}*/}
         </Route>
-        <Route exact path="/platlist">
+        <Route exact path="/playlist">
           <PlaylistPage />   {/*activeUser={activeUser} recipes={activeUserRecipes} handleLogout={this.handleLogout} handleNewRecipe={this.handleNewRecipe}*/}
         </Route>
         <Route exact path="/onesong">

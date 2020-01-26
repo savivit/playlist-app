@@ -9,12 +9,12 @@ class playlistNavbar extends Component {
     }
 
     render() {
-        const { activeUser } = this.props;
+        const { activeUser } = "false";//this.props;
 
         const playlistLink = activeUser ? <Nav.Link href="#/playlist">רשימת השירים</Nav.Link> : null;
         const onesongLink = activeUser ? <Nav.Link href="#/onesong">שיר אחד</Nav.Link> : null;
-        const signinLink = !activeUser ? <Nav.Link href="#/signin">הרשמה</Nav.Link> : null;
         const loginLink = !activeUser ? <Nav.Link href="#/login">כניסה</Nav.Link> : null;
+        const signinLink = !activeUser ? <Nav.Link href="#/signin">הרשמה</Nav.Link> : null;
         const logoutLink = activeUser ? <Nav.Link onClick={this.logout}>יציאה</Nav.Link> : null;
         return (
             <Navbar bg="light" expand="lg">
