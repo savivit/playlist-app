@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-
+import TheNavbar from '../comps/playlistNavbar';
+                
 
 class HomePage extends Component {
     render() {
         return (
             <div>
-                <h1>Home Page</h1>
+                <TheNavbar activeUser="true"/>
+                <h1>דף הבית</h1>
             </div>
         );
     }
