@@ -2,6 +2,13 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { Switch, Route } from 'react-router-dom'
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import RecipesPage from './pages/RecipesPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 function App() {
   return (
     <div className="App">
