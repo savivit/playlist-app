@@ -16,7 +16,6 @@ import Parse from 'parse'
 Parse.initialize("KmLQVmK3lgClTDZyHzOfjM0pZc5j4ehCI7rf7zL8", "JdpeXg6Li3XFae43HWkHWZYqmSKcwQpy0O9tublL");
 Parse.serverURL = 'https://parseapi.back4app.com/';
 
-
 ReactDOM.render(<HashRouter><App /></HashRouter>, document.getElementById('root'));
 
 

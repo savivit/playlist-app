@@ -1,33 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import { Switch, Route } from 'react-router-dom'
-import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import RecipesPage from './pages/RecipesPage';
+import HomePage from './pages/homePage';
+import LoginPage from './pages/loginPage';
+import SigninPage from './pages/signinPage';
+import PlaylistPage from './pages/playlistPage';
+import OneSongPage from './pages/onesongPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+
+  }
+  render() {
+
+    return (
+
+      <Switch>
+        <Route exact path="/">
+          <HomePage />  {/*activeUser={activeUser} handleLogout={this.handleLogout}*/}
+        </Route>
+        <Route exact path="/login">
+          <LoginPage /> {/*allUsers={allUsers} handleLogin={this.handleLogin}*/}
+        </Route>
+        <Route exact path="/signin">
+          <SigninPage /> {/*allUsers={allUsers} handleLogin={this.handleLogin}*/}
+        </Route>
+        <Route exact path="/platlist">
+          <PlaylistPage />   {/*activeUser={activeUser} recipes={activeUserRecipes} handleLogout={this.handleLogout} handleNewRecipe={this.handleNewRecipe}*/}
+        </Route>
+        <Route exact path="/onesong">
+          <OneSongPage />   {/*activeUser={activeUser} recipes={activeUserRecipes} handleLogout={this.handleLogout} handleNewRecipe={this.handleNewRecipe}*/}
+        </Route>
+      </Switch>
+    );
+
+  }
 }
 
 export default App;
