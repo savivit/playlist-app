@@ -1,0 +1,15 @@
+footer {
+    background-color: #fa6f34;
+    color: #f6d5aa!important;
+    font-family: 'Alef';
+    font-size: 1rem;
+}
+
+.footer-copyright {
+    background-color: #da6331;
+    color: #f6d5aa!important;
+}
+
+a {
+    color: #f6d5aa!important;
+}
