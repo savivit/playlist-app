@@ -4,10 +4,15 @@ import TheFooter from '../comps/playlistFooter';
 import '../css/homePage.css'
 
 class HomePage extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
+        const { activeUser, handleLogout } = this.props;
         return (
             <div>
-                <TheNavbar activeUser="true" />
+                <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
                 <div className="article">
                     <h1>דף הבית</h1>
                 </div>

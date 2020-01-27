@@ -13,29 +13,47 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
+      activeUser: null,
     }
 
+    this.handleLogout = this.handleLogout.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
-  render() {
+  
+  handleLogin(user) {
+    this.setState({
+      activeUser: user
+    });
+  }
 
-    return (
+  handleLogout() {
+    this.setState({
+      activeUser: null
+    });
+  }
+
+  render() {
+    const { activeUser } = this.state;
+
+    return ( 
 
       <Switch>
         <Route exact path="/">
-          <HomePage />  {/*activeUser={activeUser} handleLogout={this.handleLogout}*/}
+          <HomePage activeUser={activeUser} handleLogout={this.handleLogout} />
         </Route>
         <Route exact path="/login">
-          <LoginPage /> {/*allUsers={allUsers} handleLogin={this.handleLogin}*/}
+          <LoginPage handleLogin={this.handleLogin} />
         </Route>
         <Route exact path="/signin">
-          <SigninPage /> {/*allUsers={allUsers} handleLogin={this.handleLogin}*/}
+          <SigninPage />
         </Route>
         <Route exact path="/playlist">
-          <PlaylistPage />   {/*activeUser={activeUser} recipes={activeUserRecipes} handleLogout={this.handleLogout} handleNewRecipe={this.handleNewRecipe}*/}
+          <PlaylistPage activeUser={activeUser} handleLogout={this.handleLogout} />
         </Route>
         <Route exact path="/onesong">
-          <OneSongPage />   {/*activeUser={activeUser} recipes={activeUserRecipes} handleLogout={this.handleLogout} handleNewRecipe={this.handleNewRecipe}*/}
+          <OneSongPage activeUser={activeUser} handleLogout={this.handleLogout} />
         </Route>
       </Switch>
     );
