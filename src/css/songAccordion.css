@@ -1,0 +1,12 @@
+.Accordion {
+    height: 100%;
+}
+
+.Accordion > .card {
+    height: 100%;
+}
+
+.Accordion img {
+    height: 250px;
+    object-fit: cover;
+} 

@@ -12,8 +12,8 @@ class LoginPage extends Component {
         super(props);
 
         this.state = {
-            email: "avivit@a.com",
-            pwd: "123",
+            email: "",
+            pwd: "",
             showInvalidLoginError: false,
             redirectToRecipesPage: false
         }
@@ -33,7 +33,7 @@ class LoginPage extends Component {
     }
 
     login() {
-        const { allUsers, handleLogin } = this.props;
+        const { handleLogin } = this.props;
         const { email, pwd } = this.state;
 
         // Pass the username and password to logIn function

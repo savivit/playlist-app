@@ -3,12 +3,14 @@ import TheNavbar from '../comps/playlistNavbar';
 import TheFooter from '../comps/playlistFooter';
 import '../css/homePage.css'
 
+
 class HomePage extends Component {
+    // eslint-disable-next-line
     constructor(props) {
         super(props);
-    }
-
-    render() {
+        }
+      
+        render() {
         const { activeUser, handleLogout } = this.props;
         return (
             <div>
