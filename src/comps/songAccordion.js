@@ -11,20 +11,26 @@ class SongAccordion extends Component {
     }
 
     render() {
-        //const { song } = this.props;
+        const { song } = this.props;
+        let audio = new Audio(song.songPreviewSpotify)
 
         return (
             <div className="Accordion">
                 <Accordion defaultActiveKey="0">
                     <Card>
                         <Card.Header>
+                            {song.songTitle}
                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
                                 Click me!
                             </Accordion.Toggle>
+                            <Button onClick={() => audio.play()}>play</Button>
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
-                        {/* <Card.Img variant="top" src={song.img} /> */}
-                            <Card.Body>Hello! I'm the body</Card.Body>
+                            {/* <Card.Img variant="top" src={song.img} /> */}
+                            <Card.Body>
+                                {song.songAltName} <br></br>
+                                {song.songYear}
+                            </Card.Body>
                         </Accordion.Collapse>
                     </Card>
                     <Card>
@@ -34,7 +40,7 @@ class SongAccordion extends Component {
                             </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="1">
-                        {/* <Card.Img variant="top" src={song.img} /> */}
+                            {/* <Card.Img variant="top" src={song.img} /> */}
                             <Card.Body>Hello! I'm another body</Card.Body>
                         </Accordion.Collapse>
                     </Card>
@@ -45,5 +51,3 @@ class SongAccordion extends Component {
 }
 
 export default SongAccordion;
-
-

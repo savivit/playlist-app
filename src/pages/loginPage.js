@@ -12,8 +12,8 @@ class LoginPage extends Component {
         super(props);
 
         this.state = {
-            email: "",
-            pwd: "",
+            email: "avivit@a.com",
+            pwd: "123",
             showInvalidLoginError: false,
             redirectToRecipesPage: false
         }
@@ -60,7 +60,7 @@ class LoginPage extends Component {
 
     render() {
         const { email, pwd, showInvalidLoginError, redirectToRecipesPage } = this.state;
-
+        const { activeUser, handleLogout } = this.props;
         if (redirectToRecipesPage) {
             return <Redirect to="/playlist" />
         }
@@ -69,7 +69,7 @@ class LoginPage extends Component {
 
         return (
             <div className="article">
-                <TheNavbar activeUser="false" />
+               <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
                 <div className="p-login">
                     <div className="main">
                         <h1>כניסה לחשבון</h1>

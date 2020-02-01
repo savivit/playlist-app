@@ -59,16 +59,15 @@ class SigninPage extends Component {
         });
     }
 
-
-
     render() {
+        const { activeUser, handleLogout } = this.props;
         const { fname, lname, email, pwd, showMovetoLogin, showInvalidLoginError, showRegistrationSucsses } = this.state;
         const movetoLogin = showMovetoLogin ? <p>אם נרשמתם כבר עברו ל  <Link id="create" to="/login">כניסה לחשבון</Link></p>: null;
         const errorAlert = showInvalidLoginError ? <Alert variant="danger">ההרשמה לא הצליחה, נסו שוב</Alert> : null;
         const sucssesAlert = showRegistrationSucsses ? <Alert variant="success"> הרשמה עברה בהצלחה! אפשר <Link id="create" to="/login">להכנס לחשבון</Link></Alert> : null;
         return (
             <div className="article">
-                <TheNavbar activeUser="false" />
+                <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
                 <div className="p-login">
                     <div className="main">
                         <h1>יצירת חשבון חדש</h1>

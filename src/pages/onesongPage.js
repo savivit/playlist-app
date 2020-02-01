@@ -3,10 +3,16 @@ import TheNavbar from '../comps/playlistNavbar';
 
 
 class OneSongPage extends Component {
-    render() {
+    // eslint-disable-next-line
+    constructor(props) {
+        super(props);
+        }
+      
+        render() {
+        const { activeUser, handleLogout } = this.props;
         return (
             <div>
-                <TheNavbar activeUser="true"/>
+              <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
                <h1>One Song Page</h1> 
             </div>
         );

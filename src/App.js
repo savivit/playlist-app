@@ -44,10 +44,10 @@ class App extends React.Component {
           <HomePage activeUser={activeUser} handleLogout={this.handleLogout} />
         </Route>
         <Route exact path="/login">
-          <LoginPage handleLogin={this.handleLogin} />
+          <LoginPage activeUser={activeUser}  handleLogout={this.handleLogout} handleLogin={this.handleLogin} />
         </Route>
         <Route exact path="/signin">
-          <SigninPage />
+          <SigninPage activeUser={activeUser} handleLogout={this.handleLogout} />
         </Route>
         <Route exact path="/playlist">
           <PlaylistPage activeUser={activeUser} handleLogout={this.handleLogout} />
