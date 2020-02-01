@@ -2,12 +2,21 @@
     height: 100%;
 }
 
-.Accordion > .card {
+.Accordion>.card {
     height: 100%;
 }
 
 .Accordion img {
-    height: 64px;
-    border-radius: 3px;
+    height: 64px!important;
+    width: 64px!important;
+    border-radius: 10px!important;
     object-fit: cover;
-} 
+    border: 1px solid lightgray;
+    padding: 2px;
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}

@@ -16,10 +16,13 @@ class SongLocalPlayer extends Component {
 
         return (
             <div>
-                <Button onClick={() => audio.play()}>play</Button>
+                <Button onClick={() => audio.play()}><i class="fas fa-play-circle"></i></Button>
             </div>
         );
     }
 }
 
 export default SongLocalPlayer;
+
+{/* <i class="fas fa-pause-circle"></i>
+ */}

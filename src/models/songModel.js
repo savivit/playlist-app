@@ -7,10 +7,12 @@ export default class SongModel {
         this.songPreviewSpotify = parseSong.get("songPreviewSpotify");
         this.songPerformer = parseSong.get("songPerformer");
         
-        this.songPic = parseSong.get("songPic")._url;
-        this.songPicSmall = parseSong.get("songPicSmall")._url;
+        this.songPic = parseSong.get("songPic");
+        this.songPicSmall = parseSong.get("songPicSmall");
         //this.img = parseSong.get("image")._url;
 
         this.owner = parseSong.get("owner");
     }
 }
+
+
