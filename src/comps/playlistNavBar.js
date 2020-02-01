@@ -40,6 +40,7 @@ class playlistNavbar extends Component {
             return <Redirect to="/" />
         }
 
+        const mainLink = activeUser ? <Nav.Link href="#/main">עמוד ראשי</Nav.Link> : null;
         const playlistLink = activeUser ? <Nav.Link href="#/playlist">רשימת השירים</Nav.Link> : null;
         const onesongLink = activeUser ? <Nav.Link href="#/onesong">שיר אחד</Nav.Link> : null;
         const loginLink = !activeUser ? <Nav.Link href="#/login">כניסה</Nav.Link> : null;
@@ -54,6 +55,7 @@ class playlistNavbar extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
+                        {mainLink}
                         {playlistLink}
                         {onesongLink}
                     </Nav>

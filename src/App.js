@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom'
 import HomePage from './pages/homePage';
 import LoginPage from './pages/loginPage';
 import SigninPage from './pages/signinPage';
+import MainUserPage from './pages/mainUserPage';
 import PlaylistPage from './pages/playlistPage';
 import OneSongPage from './pages/onesongPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -48,6 +49,9 @@ class App extends React.Component {
         </Route>
         <Route exact path="/signin">
           <SigninPage activeUser={activeUser} handleLogout={this.handleLogout} />
+        </Route>
+        <Route exact path="/main">
+          <MainUserPage activeUser={activeUser} handleLogout={this.handleLogout} />
         </Route>
         <Route exact path="/playlist">
           <PlaylistPage activeUser={activeUser} handleLogout={this.handleLogout} />

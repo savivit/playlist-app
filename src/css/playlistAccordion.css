@@ -1,0 +1,13 @@
+.Accordion {
+    height: 100%;
+}
+
+.Accordion > .card {
+    height: 100%;
+}
+
+.Accordion img {
+    height: 64px;
+    border-radius: 3px;
+    object-fit: cover;
+} 

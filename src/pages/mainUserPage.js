@@ -1,15 +1,27 @@
+//import { User } from "parse"
+
+//playlists and songs for User
+
+// link on one playlist -> playlist.page
+
+// link on one song  -> onesongPage
+
+// user can add playlists from a list (only admin can enter new lists to db)
+
+// user can add songs from list and add them to playlists (only admin can enter new songs to db)
+
+
 import React, { Component } from 'react';
 import TheNavbar from '../comps/playlistNavbar';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import SongAccordion from '../comps/songAccordion';
-import PlaylistAccordion from '../comps/playlistAccordion';
 import { Redirect } from 'react-router-dom';
-import '../css/songsPage.css'
+import '../css/mainUserPage.css'
 //import NewRecipeModal from '../components/NewRecipeModal';
 import Parse from 'parse';
 import SongModel from '../models/songModel';
 
-class PlaylistPage extends Component {
+class MainUserPage extends Component {
     // eslint-disable-next-line
     constructor(props) {
         super(props);
@@ -66,7 +78,7 @@ class PlaylistPage extends Component {
     render() {
         const { showNewSongModal, songs } = this.state;
         const { activeUser, handleLogout } = this.props;
-
+        //let audio = new Audio("https://p.scdn.co/mp3-preview/1d5954177c633cefee3ff157f2f3d03a70bdaf1d?cid=774b29d4f13844c495f206cafdad9c86")
 
         if (!activeUser) {
             return <Redirect to="/" />
@@ -84,13 +96,13 @@ class PlaylistPage extends Component {
                 <Container>
                     <div className="songs-header">
                         <Button onClick={() => { this.setState({ showNewSongModal: true }) }}>New Song</Button>
+                   {/*      <Button onClick={ () => audio.play() }>play</Button> */}
                     </div>
                     <Row>
                         {songsView}
                     </Row>
                 </Container>
-                <hr />
-                <PlaylistAccordion songs={songs} />
+
 
                 {/*  <NewRecipeModal show={showNewRecipeModal} handleClose={this.handleClose} handleNewRecipe={this.handleNewRecipe} /> */}
             </div>
@@ -99,4 +111,4 @@ class PlaylistPage extends Component {
 
 }
 
-export default PlaylistPage; 
+export default MainUserPage; 
