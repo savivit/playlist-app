@@ -15,11 +15,13 @@ import React, { Component } from 'react';
 import TheNavbar from '../comps/playlistNavbar';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import SongAccordion from '../comps/songAccordion';
+import PlaylistCard from '../comps/playlistCard';
 import { Redirect } from 'react-router-dom';
 import '../css/mainUserPage.css'
 //import NewRecipeModal from '../components/NewRecipeModal';
 import Parse from 'parse';
 import SongModel from '../models/songModel';
+import PlaylistModel from '../models/playlistModel';
 
 class MainUserPage extends Component {
     // eslint-disable-next-line
@@ -43,8 +45,8 @@ class MainUserPage extends Component {
             query.equalTo("playlistOwner", Parse.User.current());
 
             const parsePlaylists = await query.find();
-            const playlists = parsePlaylists.map(parsePlaylist => new SongModel(parsePlaylist));
-            this.setState({ playlists });
+            const playlists = parsePlaylists.map(parsePlaylist => new PlaylistModel(parsePlaylist));
+            /*this.setState({ playlists });  */
 
 
             const Song = Parse.Object.extend('T_Songs');
@@ -53,10 +55,10 @@ class MainUserPage extends Component {
 
             const parseSongs = await query2.find();
             const songs = parseSongs.map(parseSong => new SongModel(parseSong));
-            this.setState({ songs });
+            this.setState({ playlists, songs });
+
         }
     }
-
 
     handleClose() {
         this.setState({
@@ -86,19 +88,18 @@ class MainUserPage extends Component {
 
 
     render() {
-        const { showNewSongModal, songs , playlists } = this.state;
+        const { showNewSongModal, songs, playlists } = this.state;
         const { activeUser, handleLogout } = this.props;
-        //let audio = new Audio("https://p.scdn.co/mp3-preview/1d5954177c633cefee3ff157f2f3d03a70bdaf1d?cid=774b29d4f13844c495f206cafdad9c86")
 
         if (!activeUser) {
             return <Redirect to="/" />
         }
 
-        /* const playlistsView = songs.map(song =>
-            <Col lg={3} md={6} key={song.id}>
-                <SongAccordion song={song} />
+        const playlistsView = playlists.map(playlist =>
+            <Col lg={3} md={6} key={playlist.id}>
+                <PlaylistCard playlist={playlist} />
             </Col>)
- */
+
         const songsView = songs.map(song =>
             <Col lg={3} md={6} key={song.id}>
                 <SongAccordion song={song} />
@@ -111,8 +112,10 @@ class MainUserPage extends Component {
                 <Container>
                     <div className="songs-header">
                         <Button onClick={() => { this.setState({ showNewSongModal: true }) }}>New Song</Button>
-                   {/*      <Button onClick={ () => audio.play() }>play</Button> */}
                     </div>
+                    <Row>
+                        {playlistsView}
+                    </Row>
                     <Row>
                         {songsView}
                     </Row>

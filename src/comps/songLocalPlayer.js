@@ -27,7 +27,7 @@ class SongLocalPlayer extends Component {
                 }); 
                 clearInterval(this.myInterval);
             }
-          }, 1000)
+          }, 500)
         this.setState({
             showPause: true
         });
