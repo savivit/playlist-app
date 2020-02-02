@@ -72,26 +72,26 @@ class PlaylistPage extends Component {
             return <Redirect to="/" />
         }
 
-        const songsView = songs.map(song =>
+        /* const songsView = songs.map(song =>
             <Col lg={3} md={6} key={song.id}>
                 <SongAccordion song={song} />
             </Col>)
-
+ */
         return (
             <div>
                 <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
-                <h1> המוזיקה של {activeUser.fname}</h1>
+                <h1> רשימת ההשמעה פסטיבל 73 של {activeUser.fname}</h1>
                 <Container>
-                    <div className="songs-header">
-                        <Button onClick={() => { this.setState({ showNewSongModal: true }) }}>New Song</Button>
-                    </div>
-                    <Row>
+                   
+                   {/*  <Row>
                         {songsView}
-                    </Row>
+                    </Row> */}
                 </Container>
                 <hr />
                 <PlaylistAccordion songs={songs} />
-
+                <div className="songs-header">
+                        <Button onClick={() => { this.setState({ showNewSongModal: true }) }}><i class="fas fa-plus-square"></i></Button>
+                    </div>
                 {/*  <NewRecipeModal show={showNewRecipeModal} handleClose={this.handleClose} handleNewRecipe={this.handleNewRecipe} /> */}
             </div>
         );

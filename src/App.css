@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+h1 {
+  font-family: 'Alef';
+  font-size: 2rem!important;
+  background-color: #f6d5aa;
+  color: #822537;
+  text-align: center;
+  padding-top: 16px!important;
+  padding-bottom: 16px!important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

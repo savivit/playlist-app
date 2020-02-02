@@ -8,7 +8,8 @@ import SigninPage from './pages/signinPage';
 import MainUserPage from './pages/mainUserPage';
 import PlaylistPage from './pages/playlistPage';
 import OneSongPage from './pages/onesongPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import './custom.scss';
 
 
 class App extends React.Component {

@@ -92,7 +92,7 @@ class MainUserPage extends Component {
         return (
             <div>
                 <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
-                <h1>{activeUser.fname}'s Platlist Page</h1>
+                <h1> המוזיקה של {activeUser.fname}</h1>
                 <Container>
                     <div className="songs-header">
                         <Button onClick={() => { this.setState({ showNewSongModal: true }) }}>New Song</Button>
