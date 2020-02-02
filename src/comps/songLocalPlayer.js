@@ -12,17 +12,20 @@ class SongLocalPlayer extends Component {
             showPause: false
         }
 
+        this.audio = new Audio(this.props.song.songPreviewSpotify)
         this.handlePlay = this.handlePlay.bind(this);
         this.handlePause = this.handlePause.bind(this);
     }
 
     handlePlay() {
+        this.audio.play();
         this.setState({
             showPause: true
         });
     }
 
     handlePause() {
+        this.audio.pause();
         this.setState({
             showPause: false
         });
@@ -30,11 +33,11 @@ class SongLocalPlayer extends Component {
 
 
     render() {
-        const { song } = this.props;
-        let audio = new Audio(song.songPreviewSpotify)
+        //const { song } = this.props;
+        //let audio = new Audio(song.songPreviewSpotify)
         let showPause = this.state.showPause
 
-        const playPauseview = showPause ? <Button onClick={() => audio.pause()}><i class="fas fa-pause-circle"></i></Button> : <Button onClick={() => audio.play()}><i class="fas fa-play-circle"></i></Button>;
+        const playPauseview = showPause ? <Button onClick={() => this.handlePause()}><i class="fas fa-pause-circle"></i></Button> : <Button onClick={() => this.handlePlay()}><i class="fas fa-play-circle"></i></Button>;
 
 
         return (

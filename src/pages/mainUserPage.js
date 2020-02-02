@@ -27,6 +27,7 @@ class MainUserPage extends Component {
         super(props);
 
         this.state = {
+            playlists: [],
             songs: [],
             showNewSongModal: false
         }
@@ -37,11 +38,20 @@ class MainUserPage extends Component {
 
     async componentDidMount() {
         if (this.props.activeUser) {
-            const Song = Parse.Object.extend('T_Songs');
-            const query = new Parse.Query(Song);
-            query.equalTo("owner", Parse.User.current());
+            const Playlist = Parse.Object.extend('T_Playlists');
+            const query = new Parse.Query(Playlist);
+            query.equalTo("playlistOwner", Parse.User.current());
 
-            const parseSongs = await query.find();
+            const parsePlaylists = await query.find();
+            const playlists = parsePlaylists.map(parsePlaylist => new SongModel(parsePlaylist));
+            this.setState({ playlists });
+
+
+            const Song = Parse.Object.extend('T_Songs');
+            const query2 = new Parse.Query(Song);
+            query2.equalTo("owner", Parse.User.current());
+
+            const parseSongs = await query2.find();
             const songs = parseSongs.map(parseSong => new SongModel(parseSong));
             this.setState({ songs });
         }
@@ -76,7 +86,7 @@ class MainUserPage extends Component {
 
 
     render() {
-        const { showNewSongModal, songs } = this.state;
+        const { showNewSongModal, songs , playlists } = this.state;
         const { activeUser, handleLogout } = this.props;
         //let audio = new Audio("https://p.scdn.co/mp3-preview/1d5954177c633cefee3ff157f2f3d03a70bdaf1d?cid=774b29d4f13844c495f206cafdad9c86")
 
@@ -84,6 +94,11 @@ class MainUserPage extends Component {
             return <Redirect to="/" />
         }
 
+        /* const playlistsView = songs.map(song =>
+            <Col lg={3} md={6} key={song.id}>
+                <SongAccordion song={song} />
+            </Col>)
+ */
         const songsView = songs.map(song =>
             <Col lg={3} md={6} key={song.id}>
                 <SongAccordion song={song} />
