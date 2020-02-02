@@ -24,10 +24,10 @@ class SongLocalPlayer extends Component {
             if (this.audio.ended) {
                 this.setState({
                     showPause: false
-                }); 
+                });
                 clearInterval(this.myInterval);
             }
-          }, 500)
+        }, 500)
         this.setState({
             showPause: true
         });
@@ -43,12 +43,15 @@ class SongLocalPlayer extends Component {
 
 
     render() {
-        //const { song } = this.props;
+        const { song } = this.props;
         //let audio = new Audio(song.songPreviewSpotify)
         let showPause = this.state.showPause
-
-        const playPauseview = showPause ? <Button onClick={() => this.handlePause()}><i class="fas fa-pause-circle"></i></Button> : <Button onClick={() => this.handlePlay()}><i class="fas fa-play-circle"></i></Button>;
-
+        let playPauseview = "";
+        if (song.songPreviewSpotify) {
+            playPauseview = showPause ? <Button onClick={() => this.handlePause()}><i class="fas fa-pause-circle"></i></Button> : <Button onClick={() => this.handlePlay()}><i class="fas fa-play-circle"></i></Button>;
+        } else {
+            playPauseview = <Button variant="outline-light" disabled><i class="fas fa-play-circle"></i></Button>;
+        };
 
         return (
             <div>
