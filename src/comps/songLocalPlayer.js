@@ -12,6 +12,7 @@ class SongLocalPlayer extends Component {
             showPause: false
         }
 
+        this.myInterval = [];
         this.audio = new Audio(this.props.song.songPreviewSpotify)
         this.handlePlay = this.handlePlay.bind(this);
         this.handlePause = this.handlePause.bind(this);
@@ -19,6 +20,14 @@ class SongLocalPlayer extends Component {
 
     handlePlay() {
         this.audio.play();
+        this.myInterval = setInterval(() => {
+            if (this.audio.ended) {
+                this.setState({
+                    showPause: false
+                }); 
+                clearInterval(this.myInterval);
+            }
+          }, 1000)
         this.setState({
             showPause: true
         });
@@ -29,6 +38,7 @@ class SongLocalPlayer extends Component {
         this.setState({
             showPause: false
         });
+        clearInterval(this.myInterval);
     }
 
 
