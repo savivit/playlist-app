@@ -14,11 +14,12 @@
 import React, { Component } from 'react';
 import TheNavbar from '../comps/playlistNavbar';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
-import SongAccordion from '../comps/songAccordion';
+import PlaylistAccordion from '../comps/playlistAccordion';
 import PlaylistCard from '../comps/playlistCard';
 import { Redirect } from 'react-router-dom';
 import '../css/mainUserPage.css'
-//import NewRecipeModal from '../components/NewRecipeModal';
+import NewPlaylistModalWindow from '../comps/newPlaylistModalWindow';
+//import NewSongModalWindow from '../comps/newSongModalWindow';
 import Parse from 'parse';
 import SongModel from '../models/songModel';
 import PlaylistModel from '../models/playlistModel';
@@ -31,10 +32,13 @@ class MainUserPage extends Component {
         this.state = {
             playlists: [],
             songs: [],
-            showNewSongModal: false
+            showNewSongModal: false,
+            showNewPlaylistModal: false
         }
 
-        this.handleClose = this.handleClose.bind(this);
+        this.handleClosePlaylist = this.handleClosePlaylist.bind(this);
+        this.handleCloseSong = this.handleCloseSong.bind(this);
+        this.handleNewPlaylist = this.handleNewPlaylist.bind(this);
         this.handleNewSong = this.handleNewSong.bind(this);
     }
 
@@ -60,11 +64,17 @@ class MainUserPage extends Component {
         }
     }
 
-    handleClose() {
+    handleClosePlaylist() {
+        this.setState({
+            showNewPlaylistModal: false
+        })
+    }
+    handleCloseSong() {
         this.setState({
             showNewSongModal: false
         })
     }
+
 
     handleNewSong(newSong) {
         const Song = Parse.Object.extend('T_Songs');
@@ -86,9 +96,29 @@ class MainUserPage extends Component {
         });
     }
 
+    handleNewPlaylist(newPlaylist) {
+        const Playlist = Parse.Object.extend('T_Playlists');
+        const newParsePlaylist = new Playlist();
+
+        newParsePlaylist.set('playlistTitle', newPlaylist.title);
+        newParsePlaylist.set('playlistDesc', newPlaylist.desc);
+        newParsePlaylist.set('playlistPic', newPlaylist.pic);
+        //newParseSong.set('image', new Parse.File(newSong.fileImg.file.name, newSong.fileImg.file));
+        newParsePlaylist.set('playlistOwner', Parse.User.current());
+
+        newParsePlaylist.save().then(theCreatedParseplaylist => {
+            console.log('Playlist created', theCreatedParseplaylist);
+            this.setState({
+                songs: this.state.playlists.concat(new PlaylistModel(theCreatedParseplaylist))
+            })
+        }, error => {
+            console.error('Error while creating Playlist: ', error);
+        });
+    }
+
 
     render() {
-        const { showNewSongModal, songs, playlists } = this.state;
+        const { showNewPlaylistModal, showNewSongModal, songs, playlists } = this.state;
         const { activeUser, handleLogout } = this.props;
 
         if (!activeUser) {
@@ -100,29 +130,30 @@ class MainUserPage extends Component {
                 <PlaylistCard playlist={playlist} />
             </Col>)
 
-        const songsView = songs.map(song =>
-            <Col lg={3} md={6} key={song.id}>
-                <SongAccordion song={song} />
-            </Col>)
-
         return (
             <div>
                 <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
                 <h1> המוזיקה של {activeUser.fname}</h1>
                 <Container>
-                    <div className="songs-header">
-                        <Button onClick={() => { this.setState({ showNewSongModal: true }) }}>New Song</Button>
+                    <div className="main-button">
+                        <Button variant="outline-primary" onClick={() => { this.setState({ showNewPlaylistModal: true }) }} block>יצירת רשימה חדשה</Button>
                     </div>
                     <Row>
                         {playlistsView}
                     </Row>
+                    <div className="main-button">
+                        <Button variant="outline-primary" onClick={() => { this.setState({ showNewSongModal: true }) }} block>הוספת שיר חדש</Button>
+                    </div>
                     <Row>
-                        {songsView}
+                        <Col lg={12} md={12}>
+                            <PlaylistAccordion songs={songs} />
+                        </Col>
                     </Row>
                 </Container>
 
 
-                {/*  <NewRecipeModal show={showNewRecipeModal} handleClose={this.handleClose} handleNewRecipe={this.handleNewRecipe} /> */}
+                <NewPlaylistModalWindow show={showNewPlaylistModal} handleClosePlaylist={this.handleClosePlaylist} handleNewPlaylist={this.handleNewPlaylist} />
+                {/*  <NewSongModalWindow show={showNewSongModal} handleCloseSong={this.handleCloseSong} handleNewSong={this.handleNewSong} /> */}
             </div>
         );
     }

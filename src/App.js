@@ -54,7 +54,7 @@ class App extends React.Component {
         <Route exact path="/main">
           <MainUserPage activeUser={activeUser} handleLogout={this.handleLogout} />
         </Route>
-        <Route exact path="/playlist">
+        <Route exact path="/playlist/:id">
           <PlaylistPage activeUser={activeUser} handleLogout={this.handleLogout} />
         </Route>
         <Route exact path="/onesong">

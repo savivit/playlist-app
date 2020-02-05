@@ -3,3 +3,6 @@
     align-items: center;
     justify-content: space-between;
 }
+.main-button {
+    margin: 16px 0px;
+}

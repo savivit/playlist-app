@@ -62,7 +62,7 @@ class LoginPage extends Component {
         const { email, pwd, showInvalidLoginError, redirectToRecipesPage } = this.state;
         const { activeUser, handleLogout } = this.props;
         if (redirectToRecipesPage) {
-            return <Redirect to="/playlist" />
+            return <Redirect to="/main" />
         }
 
         const errorAlert = showInvalidLoginError ? <Alert variant="danger">אימייל או סיסמה לא נכונים</Alert> : null;
