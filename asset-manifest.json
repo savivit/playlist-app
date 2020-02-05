@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/playlist-app/static/css/main.dcc5d8d5.chunk.css",
+    "main.js": "/playlist-app/static/js/main.59a58d3b.chunk.js",
+    "main.js.map": "/playlist-app/static/js/main.59a58d3b.chunk.js.map",
+    "runtime-main.js": "/playlist-app/static/js/runtime-main.ac58e9b5.js",
+    "runtime-main.js.map": "/playlist-app/static/js/runtime-main.ac58e9b5.js.map",
+    "static/js/2.50c4a24e.chunk.js": "/playlist-app/static/js/2.50c4a24e.chunk.js",
+    "static/js/2.50c4a24e.chunk.js.map": "/playlist-app/static/js/2.50c4a24e.chunk.js.map",
+    "index.html": "/playlist-app/index.html",
+    "precache-manifest.7e1780871c3087d0d489f2642862b307.js": "/playlist-app/precache-manifest.7e1780871c3087d0d489f2642862b307.js",
+    "service-worker.js": "/playlist-app/service-worker.js",
+    "static/css/main.dcc5d8d5.chunk.css.map": "/playlist-app/static/css/main.dcc5d8d5.chunk.css.map",
+    "static/js/2.50c4a24e.chunk.js.LICENSE": "/playlist-app/static/js/2.50c4a24e.chunk.js.LICENSE",
+    "static/media/piano_light_rgb_fill.png": "/playlist-app/static/media/piano_light_rgb_fill.74942900.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ac58e9b5.js",
+    "static/js/2.50c4a24e.chunk.js",
+    "static/css/main.dcc5d8d5.chunk.css",
+    "static/js/main.59a58d3b.chunk.js"
+  ]
+}
