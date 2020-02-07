@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import TheNavbar from '../comps/playlistNavbar';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
-import SongAccordion from '../comps/songAccordion';
+//import SongAccordion from '../comps/songAccordion';
 import PlaylistAccordion from '../comps/playlistAccordion';
 import { Redirect } from 'react-router-dom';
 import '../css/songsPage.css'
 //import NewRecipeModal from '../components/NewRecipeModal';
 import Parse from 'parse';
 import SongModel from '../models/songModel';
+import NewSongModalWindow from '../comps/newSongModalWindow';
 
 class PlaylistPage extends Component {
     // eslint-disable-next-line
@@ -20,6 +21,9 @@ class PlaylistPage extends Component {
         }
 
         this.paramID = window.location.href.split("/")[window.location.href.split("/").length - 1];
+        this.playlistTitle = "";
+        this.playlistDesc = "";
+        this.playlistPic = "";
 
         this.handleClose = this.handleClose.bind(this);
         this.handleNewSong = this.handleNewSong.bind(this);
@@ -31,8 +35,11 @@ class PlaylistPage extends Component {
             //call playlists table to get the objects
             let playlists = Parse.Object.extend("T_Playlists")
             let query1 = new Parse.Query(playlists)
-            let playlist = await query1.get(this.paramID) 
+            let playlist = await query1.get(this.paramID)
 
+            this.playlistTitle = playlist.get('playlistTitle');
+            this.playlistDesc = playlist.get('playlistDesc');
+            this.playlistPic = playlist.get('playlistPic');
             //call many to many table to find list of sons in playlist as objects
             let PlaylistsSongs = Parse.Object.extend("T_SongsInPlaylists")
             let query = new Parse.Query(PlaylistsSongs)
@@ -44,32 +51,11 @@ class PlaylistPage extends Component {
             const parseSongsPlaylists = await query.find();
             const songs = parseSongsPlaylists.map(parseSongsPlaylist => new SongModel(parseSongsPlaylist.get('siplSong')));
             this.setState({ songs });
-           
-/////////////////////////////////
-           /*  var Company = Parse.Object.extend("Company");
-            var mainQuery = Parse.Query(Company);
-            
-            var UserObject = Parse.Object.extend("User");
-            var innerUserQuery = new Parse.Query(UserObject);
-            innerBankQuery.equalTo("name", "ABC");
-            mainQuery.matchesQuery("bank", innerBankQuery);
-            
-            var ansCollection = mainQuery.collection();
-                ansCollection.fetch({
-                    success: function(results) {
-                     // Do whatever ...
-                  }
-                }); */
-//////////////////////////////
-            
+
+
             //const parseSongs = await query.find();
             //const songs = parseSongs.map(parseSong => new SongModel(parseSong));
             //this.setState({ songs });
-
-
-
-
-
             /* old    const Song = Parse.Object.extend('T_Songs');
                 const query = new Parse.Query(Song);
                 query.equalTo("owner", Parse.User.current());
@@ -125,20 +111,20 @@ class PlaylistPage extends Component {
         return (
             <div>
                 <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
-                <h1> רשימת ההשמעה פסטיבל 73 של {activeUser.fname}</h1>
+                <h1> רשימת ההשמעה {this.playlistTitle} {/* של {activeUser.fname} */}</h1>
                 <Container>
-
-                    {/*  <Row>
-                        {songsView}
-                    </Row> */}
+                    <div className="main-button">
+                        <Button variant="outline-primary" onClick={() => { this.setState({ showNewSongModal: true }) }} block>הוספת שיר חדש</Button>
+                    </div>
+                    <Row>
+                        <Col lg={12} md={12}>
+                            <PlaylistAccordion songs={songs} />
+                        </Col>
+                    </Row>
                 </Container>
-                <hr />
-                <PlaylistAccordion songs={songs} />
-                <div className="songs-header">
-                    <Button onClick={() => { this.setState({ showNewSongModal: true }) }}><i class="fas fa-plus-square"></i></Button>
-                </div>
-                {/*  <NewRecipeModal show={showNewRecipeModal} handleClose={this.handleClose} handleNewRecipe={this.handleNewRecipe} /> */}
             </div>
+
+               
         );
     }
 

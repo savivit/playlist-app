@@ -41,7 +41,7 @@ class playlistNavbar extends Component {
         }
 
         const mainLink = activeUser ? <Nav.Link href="#/main">עמוד ראשי</Nav.Link> : null;
-        const playlistLink = activeUser ? <Nav.Link href="#/playlist">רשימת השירים</Nav.Link> : null;
+        //const playlistLink = activeUser ? <Nav.Link href="#/playlist">רשימת השירים</Nav.Link> : null;
         const onesongLink = activeUser ? <Nav.Link href="#/onesong">שיר אחד</Nav.Link> : null;
         const helloLink = activeUser ? <Nav.Link href="">שלום {activeUser.fname}</Nav.Link> : null;
         const loginLink = !activeUser ? <Nav.Link href="#/login">כניסה</Nav.Link> : null;
@@ -57,7 +57,7 @@ class playlistNavbar extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
                         {mainLink}
-                        {playlistLink}
+                        {/* {playlistLink} */}
                         {onesongLink}
                     </Nav>
                     <Nav className="mr-auto">
