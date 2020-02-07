@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import TheNavbar from '../comps/playlistNavbar';
-import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
+import { Container, Row, Col, Button, Image, Badge ,Modal } from 'react-bootstrap'
 //import SongAccordion from '../comps/songAccordion';
 import PlaylistAccordion from '../comps/playlistAccordion';
 import { Redirect } from 'react-router-dom';
-import '../css/songsPage.css'
-//import NewRecipeModal from '../components/NewRecipeModal';
+import '../css/playlistPage.css'
 import Parse from 'parse';
 import SongModel from '../models/songModel';
 import NewSongModalWindow from '../comps/newSongModalWindow';
@@ -113,8 +112,20 @@ class PlaylistPage extends Component {
                 <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
                 <h1> רשימת ההשמעה {this.playlistTitle} {/* של {activeUser.fname} */}</h1>
                 <Container>
+                    <Row>
+                        <Col lg={4} md={12}>
+                        <Image className="playlistPic" variant="top" src={this.playlistPic}/>
+                        </Col>
+                        <Col className="playlistDesc" lg={8} md={12}>
+                            
+                            <div>
+                            <h5><Badge variant="primary">{this.playlistTitle}</Badge></h5>
+                            {this.playlistDesc}
+                            </div>
+                        </Col>
+                    </Row>
                     <div className="main-button">
-                        <Button variant="outline-primary" onClick={() => { this.setState({ showNewSongModal: true }) }} block>הוספת שיר חדש</Button>
+                        <Button variant="outline-primary" onClick={() => { this.setState({ showNewSongModal: true }) }} block>הוספת שיר חדש לרשימה</Button>
                     </div>
                     <Row>
                         <Col lg={12} md={12}>
@@ -122,12 +133,13 @@ class PlaylistPage extends Component {
                         </Col>
                     </Row>
                 </Container>
+                 {/* <NewSongModalWindow show={showNewSongModal} handleCloseSong={this.handleCloseSong} handleNewSong={this.handleNewSong} />
+            </div> */}
             </div>
 
-               
+
         );
     }
-
 }
 
 export default PlaylistPage; 
