@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form, Row, Col, Image } from 'react-bootstrap';
+import '../css/newPlaylistModalWindow.css';
 
 class NewPlaylistModalWindow extends Component {
     constructor(props) {
@@ -65,24 +66,24 @@ class NewPlaylistModalWindow extends Component {
         return (
             <Modal show={show} onHide={handleClosePlaylist}>
                 <Modal.Header closeButton>
-                    <Modal.Title>New Playlist</Modal.Title>
+                    <Modal.Title>רשימה חדשה</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group>
-                            <Form.Label>Title</Form.Label>
+                            <Form.Label>שם הרשימה</Form.Label>
                             <Form.Control name="title" value={title}
                                 type="text" placeholder="Enter Playlist Title" onChange={this.handleInputChange} />
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label>Description</Form.Label>
+                            <Form.Label>תיאור</Form.Label>
                             <Form.Control name="desc" value={desc}
                                 type="text" placeholder="Enter Description" onChange={this.handleInputChange} />
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label>Image URL</Form.Label>
+                            <Form.Label>קישור לתמונה</Form.Label>
                             <Row>
                                 <Col>
                            {/*  <Form.Control type="file" onChange={this.handleFileChange} /> */}
@@ -97,11 +98,11 @@ class NewPlaylistModalWindow extends Component {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClosePlaylist}>
-                        Cancel
+                    <Button variant="lightgray" onClick={handleClosePlaylist}>
+                        ביטול
                 </Button>
-                    <Button variant="success" onClick={this.createPlaylist}>
-                        Create
+                    <Button variant="primary" onClick={this.createPlaylist}>
+                        יצירה
                 </Button>
                 </Modal.Footer>
             </Modal>);

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import TheNavbar from '../comps/playlistNavbar';
-import { Container, Row, Col, Button, Image, Badge ,Modal } from 'react-bootstrap'
+import { Container, Row, Col, Button, Image, Badge, Modal } from 'react-bootstrap'
 //import SongAccordion from '../comps/songAccordion';
 import PlaylistAccordion from '../comps/playlistAccordion';
 import { Redirect } from 'react-router-dom';
 import '../css/playlistPage.css'
+
+
 import Parse from 'parse';
 import SongModel from '../models/songModel';
 import NewSongModalWindow from '../comps/newSongModalWindow';
@@ -24,7 +26,7 @@ class PlaylistPage extends Component {
         this.playlistDesc = "";
         this.playlistPic = "";
 
-        this.handleClose = this.handleClose.bind(this);
+        this.handleCloseSong = this.handleCloseSong.bind(this);
         this.handleNewSong = this.handleNewSong.bind(this);
     }
 
@@ -36,6 +38,7 @@ class PlaylistPage extends Component {
             let query1 = new Parse.Query(playlists)
             let playlist = await query1.get(this.paramID)
 
+            this.ourPlaylist = playlist;
             this.playlistTitle = playlist.get('playlistTitle');
             this.playlistDesc = playlist.get('playlistDesc');
             this.playlistPic = playlist.get('playlistPic');
@@ -66,7 +69,7 @@ class PlaylistPage extends Component {
     }
 
 
-    handleClose() {
+    handleCloseSong() {
         this.setState({
             showNewSongModal: false
         })
@@ -76,9 +79,12 @@ class PlaylistPage extends Component {
         const Song = Parse.Object.extend('T_Songs');
         const newParseSong = new Song();
 
-        newParseSong.set('songTitle', newSong.songTitle);
-        newParseSong.set('songAltName', newSong.songAltName);
-        newParseSong.set('songYear', newSong.songYear);
+        newParseSong.set('songTitle', newSong.title);
+        newParseSong.set('songPerformer', newSong.performer);
+        newParseSong.set('songPreviewSpotify', newSong.previewLink);
+        newParseSong.set('songPicSmall', newSong.pic);
+        //newParseSong.set('songAltName', newSong.songAltName);
+        //newParseSong.set('songYear', newSong.songYear);
         //newParseSong.set('image', new Parse.File(newSong.fileImg.file.name, newSong.fileImg.file));
         newParseSong.set('owner', Parse.User.current());
 
@@ -90,8 +96,23 @@ class PlaylistPage extends Component {
         }, error => {
             console.error('Error while creating Song: ', error);
         });
-    }
 
+        // insert to T_SongsInPlaylists table too
+        const SongsInPlaylists = Parse.Object.extend('T_SongsInPlaylists');
+        const newParseSongsInPlaylists = new SongsInPlaylists();
+
+        newParseSongsInPlaylists.set('siplSongTitle', newSong.title)
+        newParseSongsInPlaylists.set('siplOrder', Number(newSong.songOrder))
+        newParseSongsInPlaylists.set('siplSong', newParseSong)
+        newParseSongsInPlaylists.set('siplPlaylist', this.ourPlaylist)
+
+
+        newParseSongsInPlaylists.save().then(theCreatedParse => {
+            console.log('created', theCreatedParse);
+        }, error => {
+            console.error('Error while creating sipl: ', error);
+        });
+    }
 
     render() {
         const { showNewSongModal, songs } = this.state;
@@ -114,13 +135,13 @@ class PlaylistPage extends Component {
                 <Container>
                     <Row>
                         <Col lg={4} md={12}>
-                        <Image className="playlistPic" variant="top" src={this.playlistPic}/>
+                            <Image className="playlistPic" variant="top" src={this.playlistPic} />
                         </Col>
                         <Col className="playlistDesc" lg={8} md={12}>
-                            
+
                             <div>
-                            <h5><Badge variant="primary">{this.playlistTitle}</Badge></h5>
-                            {this.playlistDesc}
+                                <h5><Badge variant="primary">{this.playlistTitle}</Badge></h5>
+                                {this.playlistDesc}
                             </div>
                         </Col>
                     </Row>
@@ -133,11 +154,8 @@ class PlaylistPage extends Component {
                         </Col>
                     </Row>
                 </Container>
-                 {/* <NewSongModalWindow show={showNewSongModal} handleCloseSong={this.handleCloseSong} handleNewSong={this.handleNewSong} />
-            </div> */}
+                <NewSongModalWindow show={showNewSongModal} handleCloseSong={this.handleCloseSong} handleNewSong={this.handleNewSong} />
             </div>
-
-
         );
     }
 }

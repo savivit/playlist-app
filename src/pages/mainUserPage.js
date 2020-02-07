@@ -109,7 +109,7 @@ class MainUserPage extends Component {
         newParsePlaylist.save().then(theCreatedParseplaylist => {
             console.log('Playlist created', theCreatedParseplaylist);
             this.setState({
-                songs: this.state.playlists.concat(new PlaylistModel(theCreatedParseplaylist))
+                playlists: this.state.playlists.concat(new PlaylistModel(theCreatedParseplaylist))
             })
         }, error => {
             console.error('Error while creating Playlist: ', error);
