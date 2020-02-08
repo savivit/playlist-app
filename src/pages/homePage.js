@@ -20,18 +20,21 @@ class HomePage extends Component {
                 <div className="homepageArticle">
                     <Container>
                         <Row>
-                        <Col className="" lg={8} xs={12} md={{ order: 2 }}>
+                            <Col lg={8} md={12} >
                                 <div className="homepagePic">
                                     <img alt="" src={require('../images/homepagePic.jpg')} width="100%"></img>
                                 </div>
                             </Col>
-                            <Col lg={4} xs={12} md={{ order: 1 }}>
+                            <Col className="homepageWelcome" lg={4} md={12} >
                                 <h1>ברוכים הבאים</h1>
-                                <h3>מוזמנים להצטרף ולארגן את רשימות ההשמעה שלכם</h3>
-                                <h3><p><Link id="create" to="/signin">צרו חשבון חדש</Link>
-                                    או אם נרשמתם כבר עברו ל <Link id="create" to="/login">כניסה לחשבון</Link></p></h3>
+                                <h4>מוזמנים להצטרף ולארגן את רשימות ההשמעה שלכם</h4>
+                                <Button variant="primary"><Link to="/signin">צרו חשבון חדש</Link></Button>
+                                <br></br>
+                                <h4>אם נרשמתם כבר עברו ל</h4>
+                                <Button variant="primary" size="sm"><Link to="/login">כניסה לחשבון</Link></Button>
+                                <br></br>
                             </Col>
-                            
+
                         </Row>
                     </Container>
                 </div>

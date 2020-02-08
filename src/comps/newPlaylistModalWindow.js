@@ -73,13 +73,13 @@ class NewPlaylistModalWindow extends Component {
                         <Form.Group>
                             <Form.Label>שם הרשימה</Form.Label>
                             <Form.Control name="title" value={title}
-                                type="text" placeholder="Enter Playlist Title" onChange={this.handleInputChange} />
+                                type="text" placeholder="הכניסו את שם הרשימה" onChange={this.handleInputChange} />
                         </Form.Group>
 
                         <Form.Group>
                             <Form.Label>תיאור</Form.Label>
                             <Form.Control name="desc" value={desc}
-                                type="text" placeholder="Enter Description" onChange={this.handleInputChange} />
+                                type="text" placeholder="הכניסו תיאור לרשימה" onChange={this.handleInputChange} />
                         </Form.Group>
 
                         <Form.Group>
@@ -87,7 +87,7 @@ class NewPlaylistModalWindow extends Component {
                             <Row>
                                 <Col>
                            {/*  <Form.Control type="file" onChange={this.handleFileChange} /> */}
-                           <Form.Control name="pic" value={pic} type="text" placeholder="Enter pic URL" onChange={this.handleInputChange} />
+                           <Form.Control name="pic" value={pic} type="text" placeholder="הכניסו קישור לתמונה" onChange={this.handleInputChange} />
                                 </Col>
                                 <Col>
                                     <Image src={pic} fluid/>

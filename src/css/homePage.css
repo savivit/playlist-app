@@ -1,17 +1,26 @@
 .homepageArticle {
     background-color: #f6d5aa;
     color: #5b3f31;
-    font-family: "Assistant";
-    padding: 80px auto;
-}
-h3 {
     font-family: "Alef";
+    direction: rtl;
+   
+}
+h4 {
+   text-align: center!important;
+   font-size: 1.2rem!important;
 }
 .homepagePic {
     padding: 20px;
     border-radius: 25px;
-  
+  width: 100%;
 
+}
+
+.homepageWelcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* .player-wrapper {
@@ -20,6 +29,8 @@ h3 {
 }
 
   box-shadow: 0 12px 20px 0 rgba(0,0,0,0.2);
+  font-family: "Assistant";
+  
 
 
 .react-player {

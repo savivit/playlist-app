@@ -13,3 +13,21 @@ footer {
 a {
     color: #f6d5aa!important;
 }
+
+.footerflexlogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footerlogo {
+    opacity: 0.3;
+    width: 40%;
+  }
+
+  .cont {
+  width: 100%;
+    padding-right: 3rem;
+    padding-left: 3rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
