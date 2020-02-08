@@ -11,3 +11,14 @@
  .card > img {
       border:1px inset lightgoldenrodyellow !important;
   }
+
+  .card-text {
+    height:85px;
+  }
+
+  .card-title {
+    margin-top: 1rem;
+    margin-bottom: 0.25rem!important;
+    color: #822537;
+  }
+  

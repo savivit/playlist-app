@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import TheNavbar from '../comps/playlistNavbar';
-import { Container, Row, Col, Button, Image, Badge, Modal } from 'react-bootstrap'
+import { Container, Row, Col, Button, Image, Badge, Modal, Alert } from 'react-bootstrap'
 //import SongAccordion from '../comps/songAccordion';
 import PlaylistAccordion from '../comps/playlistAccordion';
 import { Redirect } from 'react-router-dom';
 import '../css/playlistPage.css'
+import TheFooter from '../comps/playlistFooter';
 
 
 import Parse from 'parse';
@@ -18,6 +19,8 @@ class PlaylistPage extends Component {
 
         this.state = {
             songs: [],
+            showAlert: false,
+            showErrorAlert: false,
             showNewSongModal: false
         }
 
@@ -91,10 +94,14 @@ class PlaylistPage extends Component {
         newParseSong.save().then(theCreatedParseSong => {
             console.log('Song created', theCreatedParseSong);
             this.setState({
-                songs: this.state.songs.concat(new SongModel(theCreatedParseSong))
+                songs: this.state.songs.concat(new SongModel(theCreatedParseSong)),
+                showAlert: true
             })
         }, error => {
             console.error('Error while creating Song: ', error);
+            this.setState({
+                showErrorAlert: true
+            });
         });
 
         // insert to T_SongsInPlaylists table too
@@ -115,9 +122,12 @@ class PlaylistPage extends Component {
     }
 
     render() {
-        const { showNewSongModal, songs } = this.state;
+        const { showNewSongModal, songs, showAlert, showErrorAlert } = this.state;
         const { activeUser, handleLogout } = this.props;
 
+        const picSRC = this.playlistPic ? this.playlistPic : require('../images/piano_light_rgb_fill.png');
+        const successAlert = showAlert ? <Alert variant="success"> שיר נוסף בהצלחה</Alert> : null;
+        const errorAlert = showErrorAlert ? <Alert variant="danger">לא נוצר שיר חדש</Alert> : null;
 
         if (!activeUser) {
             return <Redirect to="/" />
@@ -135,7 +145,7 @@ class PlaylistPage extends Component {
                 <Container>
                     <Row>
                         <Col lg={4} md={12}>
-                            <Image className="playlistPic" variant="top" src={this.playlistPic} />
+                            <Image className="playlistPic" variant="top" src={picSRC} />
                         </Col>
                         <Col className="playlistDesc" lg={8} md={12}>
 
@@ -147,6 +157,8 @@ class PlaylistPage extends Component {
                     </Row>
                     <div className="main-button">
                         <Button variant="outline-primary" onClick={() => { this.setState({ showNewSongModal: true }) }} block>הוספת שיר חדש לרשימה</Button>
+                        {successAlert}
+                        {errorAlert}
                     </div>
                     <Row>
                         <Col lg={12} md={12}>
@@ -154,6 +166,7 @@ class PlaylistPage extends Component {
                         </Col>
                     </Row>
                 </Container>
+                <TheFooter />
                 <NewSongModalWindow show={showNewSongModal} handleCloseSong={this.handleCloseSong} handleNewSong={this.handleNewSong} />
             </div>
         );

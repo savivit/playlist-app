@@ -13,8 +13,8 @@
 
 import React, { Component } from 'react';
 import TheNavbar from '../comps/playlistNavbar';
-import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
-import PlaylistAccordion from '../comps/playlistAccordion';
+import { Container, Row, Col, Button, Modal, Alert } from 'react-bootstrap'
+//import PlaylistAccordion from '../comps/playlistAccordion';
 import PlaylistCard from '../comps/playlistCard';
 import { Redirect } from 'react-router-dom';
 import '../css/mainUserPage.css'
@@ -23,6 +23,7 @@ import NewPlaylistModalWindow from '../comps/newPlaylistModalWindow';
 import Parse from 'parse';
 import SongModel from '../models/songModel';
 import PlaylistModel from '../models/playlistModel';
+import TheFooter from '../comps/playlistFooter';
 
 class MainUserPage extends Component {
     // eslint-disable-next-line
@@ -32,6 +33,8 @@ class MainUserPage extends Component {
         this.state = {
             playlists: [],
             songs: [],
+            showAlert: false,
+            showErrorAlert: false,
             showNewSongModal: false,
             showNewPlaylistModal: false
         }
@@ -109,17 +112,24 @@ class MainUserPage extends Component {
         newParsePlaylist.save().then(theCreatedParseplaylist => {
             console.log('Playlist created', theCreatedParseplaylist);
             this.setState({
-                playlists: this.state.playlists.concat(new PlaylistModel(theCreatedParseplaylist))
+                playlists: this.state.playlists.concat(new PlaylistModel(theCreatedParseplaylist)),
+                showAlert: true
             })
         }, error => {
             console.error('Error while creating Playlist: ', error);
+            this.setState({
+                showErrorAlert: true
+            });
         });
     }
 
 
     render() {
-        const { showNewPlaylistModal, showNewSongModal, songs, playlists } = this.state;
+        const { showNewPlaylistModal, showNewSongModal, songs, playlists, showAlert, showErrorAlert } = this.state;
         const { activeUser, handleLogout } = this.props;
+        const successAlert = showAlert ? <Alert variant="success">רשימה נוספה בהצלחה</Alert> : null;
+        const errorAlert = showErrorAlert ? <Alert variant="danger">לא נוצרה רשימה</Alert> : null;
+
 
         if (!activeUser) {
             return <Redirect to="/" />
@@ -137,21 +147,23 @@ class MainUserPage extends Component {
                 <Container>
                     <div className="main-button">
                         <Button variant="outline-primary" onClick={() => { this.setState({ showNewPlaylistModal: true }) }} block>יצירת רשימה חדשה</Button>
+                        {successAlert}
+                        {errorAlert}
                     </div>
                     <Row>
                         {playlistsView}
                     </Row>
-                    <div className="main-button">
+                    {/* <div className="main-button">
                         <Button variant="outline-primary" onClick={() => { this.setState({ showNewSongModal: true }) }} block>הוספת שיר חדש</Button>
                     </div>
                     <Row>
                         <Col lg={12} md={12}>
                             <PlaylistAccordion songs={songs} />
                         </Col>
-                    </Row>
+                    </Row> */}
                 </Container>
 
-
+                <TheFooter />
                 <NewPlaylistModalWindow show={showNewPlaylistModal} handleClosePlaylist={this.handleClosePlaylist} handleNewPlaylist={this.handleNewPlaylist} />
                 {/*  <NewSongModalWindow show={showNewSongModal} handleCloseSong={this.handleCloseSong} handleNewSong={this.handleNewSong} /> */}
             </div>

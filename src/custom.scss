@@ -4,7 +4,10 @@ $theme-colors: (
   "primary": #822537,
   "secondary":#fa6f34,
   "light":#f6d5aa,
-  "dark":#5b3f31
+  "dark":#5b3f31,
+  "success":#1f604b,
+  "warning":#B38212,
+  "danger":#b33112
   );
 
   @import '~bootstrap/scss/bootstrap.scss';
