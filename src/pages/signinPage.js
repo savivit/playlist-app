@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Container, Row, Col } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 import Parse from 'parse'
 import TheNavbar from '../comps/playlistNavbar';
 import UserModel from '../models/userModel';
 import '../css/signinPage.css'
+import TheFooter from '../comps/playlistFooter';
 
 class SigninPage extends Component {
     constructor(props) {
@@ -49,7 +50,7 @@ class SigninPage extends Component {
             console.log('User created successful with name: ' + newuser.fname + ' ' + newuser.lname + ' and email: ' + newuser.email);
             this.setState({
                 showRegistrationSucsses: true,
-                showMovetoLogin : false
+                showMovetoLogin: false
             });
         }).catch(error => {
             console.log("Error: " + error.code + " " + error.message);
@@ -62,45 +63,52 @@ class SigninPage extends Component {
     render() {
         const { activeUser, handleLogout } = this.props;
         const { fname, lname, email, pwd, showMovetoLogin, showInvalidLoginError, showRegistrationSucsses } = this.state;
-        const movetoLogin = showMovetoLogin ? <p>אם נרשמתם כבר עברו ל  <Link id="create" to="/login">כניסה לחשבון</Link></p>: null;
+        const movetoLogin = showMovetoLogin ? <div className="ifloginflex"><hr></hr><p>אם כבר נרשמתם</p><Button variant="primary" size="sm"><Link to="/login">הכנסו לחשבון</Link></Button></div> : null;
         const errorAlert = showInvalidLoginError ? <Alert variant="danger">ההרשמה לא הצליחה, נסו שוב</Alert> : null;
         const sucssesAlert = showRegistrationSucsses ? <Alert variant="success"> הרשמה עברה בהצלחה! אפשר <Link id="create" to="/login">להכנס לחשבון</Link></Alert> : null;
         return (
-            <div className="article">
+            <div className="signinArticle">
                 <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
-                <div className="p-login">
-                    <div className="main">
-                        <h1>יצירת חשבון חדש</h1>
-                        {movetoLogin}
-                        {errorAlert}
-                        {sucssesAlert}
-                        <Form>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>שם פרטי</Form.Label>
-                                <Form.Control name="fname" value={fname}
-                                    placeholder="הכניסו את השם הפרטי" onChange={this.handleInputChange} />
-                            </Form.Group>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>שם משפחה</Form.Label>
-                                <Form.Control name="lname" value={lname}
-                                    placeholder="הכניסו את שם המשפחה" onChange={this.handleInputChange} />
-                            </Form.Group>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>אימייל</Form.Label>
-                                <Form.Control name="email" value={email}
-                                    type="email" placeholder="הכניסו אימייל" onChange={this.handleInputChange} />
-                            </Form.Group>
-                            <Form.Group controlId="formBasicPassword">
-                                <Form.Label>סיסמה</Form.Label>
-                                <Form.Control name="pwd" value={pwd}
-                                    type="password" placeholder="הכניסו סיסמה" onChange={this.handleInputChange} />
-                            </Form.Group>
-                            <Button type="button" block onClick={this.register}>
-                                הרשמה
-                        </Button>
-                        </Form>
+                <div className="p-signin">
+                    <div className="signin-main">
+                        <Container>
+                            <Row>
+                                <Col lg={3}></Col>
+                                <Col lg={6} md={12} className="signinCol" >
+                                    <h1>יצירת חשבון חדש</h1>
+                                    {errorAlert}
+                                    {sucssesAlert}
+                                    <Form>
+                                        <Form.Group controlId="formBasicEmail">
+                                            <Form.Label>שם פרטי</Form.Label>
+                                            <Form.Control name="fname" value={fname}
+                                                placeholder="הכניסו את השם הפרטי" onChange={this.handleInputChange} />
+                                        </Form.Group>
+                                        <Form.Group controlId="formBasicEmail">
+                                            <Form.Label>שם משפחה</Form.Label>
+                                            <Form.Control name="lname" value={lname}
+                                                placeholder="הכניסו את שם המשפחה" onChange={this.handleInputChange} />
+                                        </Form.Group>
+                                        <Form.Group controlId="formBasicEmail">
+                                            <Form.Label>אימייל</Form.Label>
+                                            <Form.Control name="email" value={email}
+                                                type="email" placeholder="הכניסו אימייל" onChange={this.handleInputChange} />
+                                        </Form.Group>
+                                        <Form.Group controlId="formBasicPassword">
+                                            <Form.Label>סיסמה</Form.Label>
+                                            <Form.Control name="pwd" value={pwd}
+                                                type="password" placeholder="הכניסו סיסמה" onChange={this.handleInputChange} />
+                                        </Form.Group>
+                                        <Button variant="primary" type="button" block onClick={this.register}>הרשמה</Button>
+                                    </Form>
+                                    {movetoLogin}
+                                </Col>
+                                <Col lg={3}></Col>
+                            </Row>
+                        </Container>
                     </div>
                 </div>
+                <TheFooter />
             </div>
         );
     }

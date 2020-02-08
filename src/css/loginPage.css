@@ -1,26 +1,28 @@
-.p-login>.main {
-    width: 500px;
-    margin: 40px auto;
+.p-login>.login-main {
+    margin: 40px auto 60px auto;
+   
 }
 
-.p-login button {
-    font-weight: bold;
-    background-color: #822537;
-    border-color:#822537;
-}
-.p-login button:hover {
-    font-weight: bold;
-    background-color: #681f2d;
-    border-color:#681f2d;
-}
 
-.article {
+
+.loginArticle {
     background-color: #f6d5aa;
     color: #5b3f31;
     font-family: "Assistant";
-    height: 500px;
 }
 
-#create {
-    color: #fa6f34!important;
+
+.loginCol>p {
+    text-align: center;
 }
+
+.loginCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+hr {
+    margin: 0;
+    align-self: stretch;
+  }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
+/* import { Navbar, Nav } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom'; */
 import '../css/playlistFooter.css'
 
 class playlistFooter extends Component {
+    // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props);
     }

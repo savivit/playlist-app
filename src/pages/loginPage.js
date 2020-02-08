@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Container, Row, Col } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 import Parse from 'parse'
 import TheNavbar from '../comps/playlistNavbar';
 import UserModel from '../models/userModel';
 import '../css/loginPage.css'
-
+import TheFooter from '../comps/playlistFooter';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -68,31 +68,41 @@ class LoginPage extends Component {
         const errorAlert = showInvalidLoginError ? <Alert variant="danger">אימייל או סיסמה לא נכונים</Alert> : null;
 
         return (
-            <div className="article">
-               <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
+            <div className="loginArticle">
+                <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
                 <div className="p-login">
-                    <div className="main">
-                        <h1>כניסה לחשבון</h1>
-                        <p>או  <Link id="create" to="/signin">יצירת חשבון חדש</Link></p> 
-                        {errorAlert}
-                        <Form>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>אימייל</Form.Label>
-                                <Form.Control name="email" value={email}
-                                    type="email" placeholder="Enter email" onChange={this.handleInputChange} />
-                            </Form.Group>
+                    <div className="login-main">
+                        <Container>
+                            <Row>
+                            <Col lg={3}></Col>
+                                <Col lg={6} md={12} className="loginCol" >
+                                    <h1>כניסה לחשבון</h1>
+                                    {errorAlert}
+                                    <Form>
+                                        <Form.Group controlId="formBasicEmail">
+                                            <Form.Label>אימייל</Form.Label>
+                                            <Form.Control name="email" value={email}
+                                                type="email" placeholder="Enter email" onChange={this.handleInputChange} />
+                                        </Form.Group>
 
-                            <Form.Group controlId="formBasicPassword">
-                                <Form.Label>סיסמה</Form.Label>
-                                <Form.Control name="pwd" value={pwd}
-                                    type="password" placeholder="Password" onChange={this.handleInputChange} />
-                            </Form.Group>
-                            <Button type="button" block onClick={this.login}>
-                                כניסה
-                        </Button>
-                        </Form>
+                                        <Form.Group controlId="formBasicPassword">
+                                            <Form.Label>סיסמה</Form.Label>
+                                            <Form.Control name="pwd" value={pwd}
+                                                type="password" placeholder="Password" onChange={this.handleInputChange} />
+                                        </Form.Group>
+                                        <br></br>
+                                        <Button variant="primary" type="button" block onClick={this.login}>כניסה</Button>
+                                    </Form>
+                                    <hr></hr>
+                                    <p>אם אין לכם עדיין חשבון אנא</p>
+                                    <Button variant="primary" size="sm"><Link to="/signin">צרו חשבון חדש</Link></Button>
+                                </Col>
+                                <Col lg={3}></Col>
+                            </Row>
+                        </Container>
                     </div>
                 </div>
+                <TheFooter />
             </div>
         );
     }

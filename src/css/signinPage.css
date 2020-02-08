@@ -1,26 +1,41 @@
-.p-login>.main {
-    width: 500px;
+.p-signin>.signin-main {
     margin: 40px auto;
 }
 
-.p-login button {
+.p-signin button {
     font-weight: bold;
     background-color: #822537;
     border-color:#822537;
 }
-.p-login button:hover {
+.p-signin button:hover {
     font-weight: bold;
     background-color: #681f2d;
     border-color:#681f2d;
 }
 
-.article {
+.signinArticle {
     background-color: #f6d5aa;
     color: #5b3f31;
     font-family: "Assistant";
-    height: 500px;
 }
 
-#create {
-    color: #fa6f34!important;
+hr {
+    margin: 0;
+    align-self: stretch;
+  }
+
+  .signinCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ifloginflex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ifloginflex>p {
+    text-align: center;
 }
