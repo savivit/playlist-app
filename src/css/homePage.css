@@ -1,7 +1,29 @@
-.article {
-    background-color:#f6d5aa;
+.homepageArticle {
+    background-color: #f6d5aa;
     color: #5b3f31;
     font-family: "Assistant";
-    height: 500px;
     padding: 80px auto;
 }
+h3 {
+    font-family: "Alef";
+}
+.homepagePic {
+    padding: 20px;
+    border-radius: 25px;
+  
+
+}
+
+/* .player-wrapper {
+    position: relative;
+    padding-top: 56.25%;
+}
+
+  box-shadow: 0 12px 20px 0 rgba(0,0,0,0.2);
+
+
+.react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+} */
