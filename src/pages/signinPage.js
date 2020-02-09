@@ -65,7 +65,7 @@ class SigninPage extends Component {
         const { fname, lname, email, pwd, showMovetoLogin, showInvalidLoginError, showRegistrationSucsses } = this.state;
         const movetoLogin = showMovetoLogin ? <div className="ifloginflex"><hr></hr><p>אם כבר נרשמתם</p><Button variant="primary" size="sm"><Link to="/login">הכנסו לחשבון</Link></Button></div> : null;
         const errorAlert = showInvalidLoginError ? <Alert variant="danger">ההרשמה לא הצליחה, נסו שוב</Alert> : null;
-        const sucssesAlert = showRegistrationSucsses ? <Alert variant="success"> הרשמה עברה בהצלחה! אפשר <Link id="create" to="/login">להכנס לחשבון</Link></Alert> : null;
+        const sucssesAlert = showRegistrationSucsses ? <Alert variant="success"> הרשמה עברה בהצלחה! אפשר <Button variant="primary" size="sm"><Link to="/login">להכנס לחשבון</Link></Button></Alert> : null;
         return (
             <div className="signinArticle">
                 <TheNavbar activeUser={activeUser} handleLogout={handleLogout} />
