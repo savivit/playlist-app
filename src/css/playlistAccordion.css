@@ -14,10 +14,21 @@
     object-fit: cover;
     border: 1px solid lightgray;
     padding: 2px;
+    margin-left: 0.5rem;
 }
 
 .cardHeader {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
+}
+.toggle {
+    margin-left: auto;
+}
+.altName {
+    font-size: 0.8rem;
+}
+
+.cardBody {
+    display: flex;
 }

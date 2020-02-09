@@ -13,24 +13,27 @@ class PlaylistAccordion extends Component {
 
     render() {
         const { songs } = this.props;
+
         const accordionview = songs.map(song =>
             <Card>
                 <Card.Header className="cardHeader">
                 <SongLocalPlayer song={song} />
-                    <Accordion.Toggle as={Button} variant="link" eventKey={song.id}>
-                        {song.songTitle}
+                    <Accordion.Toggle className="toggle" as={Button} variant="link" eventKey={song.id}>
+                        {song.songTitle} {song.songAltName !== "" ? <span className="altName"> ({song.songAltName})</span>:null}
                     </Accordion.Toggle>
                     <Accordion.Toggle as={Button} variant="link" eventKey={song.id}>
                     <i class="fas fa-chevron-down"></i>
                     </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey={song.id}>
-                    <Card.Body>
-                    <Card.Img variant="top" src={song.songPicSmall} />
+                    <Card.Body className="cardBody">
+                    
+                    <Card.Img variant="top" src={song.songPicSmall ? song.songPicSmall : require('../images/piano_light_rgb_fill.png')} />
+                        <div>
+                        ביצוע: {song.songPerformer}
                         <br />
-                        {song.songPerformer}
-                        <br />
-                        {song.songYear}
+                        שנה: {song.songYear}
+                        </div>
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>)
