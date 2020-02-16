@@ -1,0 +1,19 @@
+.playlistPic {
+    border:1px inset lightgoldenrodyellow;
+    border-radius: 10px;
+    height: 320px;
+    width: 320px;
+    margin-top: 0.5rem;
+}
+
+.playlistDesc {
+    direction: rtl;
+    text-align: right;
+    display: flex;
+    align-items: flex-end;
+}
+
+.badge {
+    margin-top: 1rem;
+    font-size: 92%!important;
+  }

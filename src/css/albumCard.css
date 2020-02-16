@@ -1,0 +1,24 @@
+.Card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin-bottom: 1rem;
+  }
+  
+.Card:hover {
+    box-shadow: 0 12px 20px 0 rgba(0,0,0,0.2);
+  }
+
+ .card > img {
+      border:1px inset lightgoldenrodyellow !important;
+  }
+
+  .card-text {
+    height:85px;
+  }
+
+  .card-title {
+    margin-top: 1rem;
+    margin-bottom: 0.25rem!important;
+    color: #822537;
+  }
+  

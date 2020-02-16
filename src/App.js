@@ -8,6 +8,8 @@ import SigninPage from './pages/signinPage';
 import MainUserPage from './pages/mainUserPage';
 import PlaylistPage from './pages/playlistPage';
 import OneSongPage from './pages/onesongPage';
+import AlbumsPage from './pages/albumsPage';
+
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './custom.scss';
 
@@ -57,6 +59,10 @@ class App extends React.Component {
         <Route exact path="/playlist/:id">
           <PlaylistPage activeUser={activeUser} handleLogout={this.handleLogout} />
         </Route>
+        <Route exact path="/albums">
+          <AlbumsPage activeUser={activeUser} handleLogout={this.handleLogout} />
+        </Route>
+
         <Route exact path="/onesong">
           <OneSongPage activeUser={activeUser} handleLogout={this.handleLogout} />
         </Route>
