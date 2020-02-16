@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import TheNavbar from '../comps/playlistNavbar';
 import TheFooter from '../comps/playlistFooter';
+// eslint-disable-next-line
 import { Link, Redirect } from 'react-router-dom';
-import '../css/homePage.css'
+// eslint-disable-next-line
 import { Container, Row, Col, Button, Image, Badge, Modal } from 'react-bootstrap'
+import '../css/homePage.css'
 
 
 class HomePage extends Component {

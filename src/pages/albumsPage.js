@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import TheNavbar from '../comps/playlistNavbar';
+// eslint-disable-next-line
 import { Container, Row, Col, Button, Modal, Alert } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom';
 import Parse from 'parse';
@@ -40,7 +41,7 @@ class AlbumsPage extends Component {
             const query = new Parse.Query(Album);
 
             query.ascending('tsalbumName')
-            query.limit(30)
+            query.limit(100)
             //query.skip(2)
             //query.equalTo("playlistOwner", Parse.User.current());
 
@@ -104,7 +105,7 @@ class AlbumsPage extends Component {
         }
 
         const albumsView = albums.map(album =>
-            <Col lg={2} md={4} key={album.id}>
+            <Col lg={2} sm={4} xs={12} key={album.id}>
                 <AlbumCard album={album} />
             </Col>)
 

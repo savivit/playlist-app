@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/albumCard.css'
 import { Card, Button } from 'react-bootstrap';
+// eslint-disable-next-line
 import { Redirect, Link } from 'react-router-dom';
 
 
@@ -23,16 +24,15 @@ class AlbumCard extends Component {
 
 
         return (
-            <div className="Card" >
+            <div className="AlbumCard" >
                 <Card>
                     <Card.Body>
                         <Card.Img variant="top" src={picSRC} />
                         <Card.Title color="primary">{album.tsalbumName}</Card.Title>
                         <Card.Text>
-                            {album.blocktsalbumReleaseDate}<br />
                             {album.tsalbumArtists}
                         </Card.Text>
-                        <Button variant="primary" href={"#/album/" + album.tsalbumId} block>לשירים <i class="fas fa-chevron-left"></i></Button>
+                        <Button variant="primary" size="sm"  href={"#/album/" + album.tsalbumId} block>לשירים <i class="fas fa-chevron-left"></i></Button>
                     </Card.Body>
                 </Card>
             </div>

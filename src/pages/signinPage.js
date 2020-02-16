@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Alert, Container, Row, Col } from 'react-bootstrap';
+// eslint-disable-next-line
 import { Link, Redirect } from 'react-router-dom';
 import Parse from 'parse'
 import TheNavbar from '../comps/playlistNavbar';

@@ -13,6 +13,7 @@
 
 import React, { Component } from 'react';
 import TheNavbar from '../comps/playlistNavbar';
+// eslint-disable-next-line
 import { Container, Row, Col, Button, Modal, Alert } from 'react-bootstrap'
 //import PlaylistAccordion from '../comps/playlistAccordion';
 import PlaylistCard from '../comps/playlistCard';
@@ -125,6 +126,7 @@ class MainUserPage extends Component {
 
 
     render() {
+        // eslint-disable-next-line
         const { showNewPlaylistModal, showNewSongModal, songs, playlists, showAlert, showErrorAlert } = this.state;
         const { activeUser, handleLogout } = this.props;
         const successAlert = showAlert ? <Alert variant="success">רשימה נוספה בהצלחה</Alert> : null;

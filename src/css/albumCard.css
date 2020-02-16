@@ -1,24 +1,26 @@
-.Card {
+.AlbumCard {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     margin-bottom: 1rem;
   }
   
-.Card:hover {
+.AlbumCard:hover {
     box-shadow: 0 12px 20px 0 rgba(0,0,0,0.2);
   }
 
- .card > img {
+  .AlbumCard .card > img {
       border:1px inset lightgoldenrodyellow !important;
   }
 
-  .card-text {
-    height:85px;
-  }
-
-  .card-title {
-    margin-top: 1rem;
+.AlbumCard .card-title {
+    margin-top: 0.5rem;
     margin-bottom: 0.25rem!important;
     color: #822537;
+    font-size: medium;
+  }
+
+  .AlbumCard .card-text {
+    margin-bottom:auto;
+    font-size: small;
   }
   
