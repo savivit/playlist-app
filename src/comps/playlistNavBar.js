@@ -43,33 +43,35 @@ class playlistNavbar extends Component {
         const mainLink = activeUser ? <Nav.Link href="#/main">רשימות השירים</Nav.Link> : null;
         const albumLink = activeUser ? <Nav.Link href="#/albums">אלבומים</Nav.Link> : null;
         //const playlistLink = activeUser ? <Nav.Link href="#/playlist">רשימת השירים</Nav.Link> : null;
-         //const onesongLink = activeUser ? <Nav.Link href="#/onesong">שיר אחד</Nav.Link> : null;
+        //const onesongLink = activeUser ? <Nav.Link href="#/onesong">שיר אחד</Nav.Link> : null;
         const helloLink = activeUser ? <Nav.Link href="">שלום {activeUser.fname}</Nav.Link> : null;
         const loginLink = !activeUser ? <Nav.Link href="#/login">כניסה</Nav.Link> : null;
         const signinLink = !activeUser ? <Nav.Link href="#/signin">הרשמה</Nav.Link> : null;
         const logoutLink = activeUser ? <Nav.Link onClick={this.logout}>יציאה</Nav.Link> : null;
 
         return (
-            <Navbar expand="lg">
-                <Navbar.Brand href="#/">
-                    <img alt="" src={require('../images/piano_light_rgb.png')} width="30" height="30" className="d-inline-block align-top" />
-                    {' '}IMNDB</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto">
-                        {mainLink}
-                        {albumLink}
-                        {/* {playlistLink}
+            <div className="c-navbar">
+                <Navbar expand="lg">
+                    <Navbar.Brand href="#/">
+                        <img alt="" src={require('../images/piano_light_rgb.png')} width="30" height="30" className="d-inline-block align-top" />
+                        {' '}IMNDB</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="ml-auto">
+                            {mainLink}
+                            {albumLink}
+                            {/* {playlistLink}
                         {onesongLink} */}
-                    </Nav>
-                    <Nav className="mr-auto">
-                        {helloLink}
-                        {loginLink}
-                        {signinLink}
-                        {logoutLink}
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+                        </Nav>
+                        <Nav className="mr-auto">
+                            {helloLink}
+                            {loginLink}
+                            {signinLink}
+                            {logoutLink}
+                        </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
+            </div>
         );
     }
 }

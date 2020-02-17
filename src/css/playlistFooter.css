@@ -10,7 +10,7 @@ footer {
     color: #f6d5aa!important;
 }
 
-a {
+footer a {
     color: #f6d5aa!important;
 }
 
@@ -24,7 +24,7 @@ a {
     width: 40%;
   }
 
-  .cont {
+  footer .cont {
   width: 100%;
     padding-right: 3rem;
     padding-left: 3rem;

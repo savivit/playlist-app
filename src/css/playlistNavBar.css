@@ -3,13 +3,13 @@
     direction: rtl;
 }
 
-nav {
+.c-navbar nav {
     background-color: #822537;
     font-family: 'Alef';
     font-size: 1rem;
 }
 
-a {
+.c-navbar a {
     color: #f6d5aa!important;
     padding: 0px 20px;
 }

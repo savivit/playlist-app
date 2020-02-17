@@ -20,7 +20,13 @@
   }
 
   .AlbumCard .card-text {
-    margin-bottom:auto;
+    margin-bottom:0.5rem;
     font-size: small;
+    height: max-content;
+  }
+
+  .AlbumCard .artistLink {
+    color: #822537;
+    margin: 0px;text-decoration: underline;
   }
   
